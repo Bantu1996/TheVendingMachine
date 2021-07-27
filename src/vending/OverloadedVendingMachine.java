@@ -5,7 +5,7 @@ public class OverloadedVendingMachine {
 int softDrinkQty, saltySnacksQty, chocolatesQty;
 
 //My Overloaded constructor...
-    OverloadedVendingMachine(int softDrinkQty, int saltySnacksQty, int chocolatesQty){
+public OverloadedVendingMachine(int softDrinkQty, int saltySnacksQty, int chocolatesQty){
         this.softDrinkQty = softDrinkQty;
         this.saltySnacksQty = saltySnacksQty;
         this.chocolatesQty = chocolatesQty;
@@ -39,13 +39,13 @@ int softDrinkQty, saltySnacksQty, chocolatesQty;
     };
 
     //Getting the bought item from the vending machine... :)
-    int getStock(SoftDrink softdrink){
+    public int getStock(SoftDrink softdrink){
        return softDrinkQty;
     };
-    int getStock(SaltySnacks saltySnacks) {
+    public int getStock(SaltySnacks saltySnacks) {
        return saltySnacksQty;
     }
-    int getStock(Chocolate chocolate){
+    public int getStock(Chocolate chocolate){
         return chocolatesQty;
     }
 }
