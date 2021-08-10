@@ -1,4 +1,4 @@
-package vending.product;
+package vending.OverloadedProduct;
 
 public class SaltySnacks extends Product{
     @Override

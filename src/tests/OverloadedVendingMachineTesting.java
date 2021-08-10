@@ -1,42 +1,58 @@
 package tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 import vending.OverloadedVendingMachine;
-import vending.product.Chocolate;
-import vending.product.Product;
-import vending.product.SaltySnacks;
-import vending.product.SoftDrink;
+import vending.OverloadedProduct.Chocolates;
+import vending.OverloadedProduct.Product;
+import vending.OverloadedProduct.SaltySnacks;
+import vending.OverloadedProduct.SoftDrinks;
 
-import static org.junit.Assert.assertEquals;
+    import static org.junit.Assert.assertEquals;
 
 public class OverloadedVendingMachineTesting {
+    @Test
+    public void givenWhenInstanceOfSofDrinksIsCorrect_thenReturnTrue() {
+        SoftDrinks softDrinks = new SoftDrinks();
+        Assert.assertTrue(softDrinks instanceof Product);
+    }
+    @Test
+    public void givenWhenInstanceOfSaltySnacksIsCorrect_thenReturnTrue() {
+        SaltySnacks saltySnacks = new SaltySnacks();
+        Assert.assertTrue(saltySnacks instanceof Product);
+    }
+    @Test
+    public void givenWhenInstanceOfChocolatesIsCorrect_thenReturnTrue() {
+        Chocolates chocolates = new Chocolates();
+        Assert.assertTrue(chocolates instanceof Product);
+    }
+
 @Test
-        public void shouldBeAbleToBuySoftDrink(){
+        public void shouldBeAbleToBuySoftDrinks(){
     OverloadedVendingMachine machine = new OverloadedVendingMachine(3, 5, 8);
-    SoftDrink softDrink = new SoftDrink();
-    machine.buy(softDrink);
-    assertEquals(machine.getStock(softDrink),2);
+    SoftDrinks softDrinks = new SoftDrinks();
+    machine.buy(softDrinks, 1);
+    assertEquals(machine.getStock(softDrinks),2);
 
 }
 @Test
     public void shouldBeAbleToBuySoftDrinkTwice(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(3, 5, 8);
-        SoftDrink softDrink = new SoftDrink();
-        machine.buy(softDrink);
-        machine.buy(softDrink);
-        assertEquals(machine.getStock(softDrink),1);
+        SoftDrinks softDrinks = new SoftDrinks();
+        machine.buy(softDrinks, 1);
+        machine.buy(softDrinks, 1);
+        assertEquals(machine.getStock(softDrinks),1);
 
     }
 
     @Test
-    public void shouldBeAbleToBuySoftDrinkThreeTimes(){
+    public void shouldBeAbleToBuySoftDrinksThreeTimes(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(4, 5, 8);
-        SoftDrink softDrink = new SoftDrink();
-        machine.buy(softDrink);
-        machine.buy(softDrink);
-        machine.buy(softDrink);
-
-        assertEquals(machine.getStock(softDrink),1);
+        SoftDrinks softDrinks = new SoftDrinks();
+        machine.buy(softDrinks, 1);
+        machine.buy(softDrinks, 1);
+        machine.buy(softDrinks, 1);
+        assertEquals(machine.getStock(softDrinks),1);
 
     }
 
@@ -44,7 +60,7 @@ public class OverloadedVendingMachineTesting {
     public void shouldBeAbleToBuySaltySnacks(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(3, 5, 8);
         SaltySnacks saltySnacks = new SaltySnacks();
-        machine.buy(saltySnacks);
+        machine.buy(saltySnacks, 1);
         assertEquals(machine.getStock(saltySnacks),4);
 
     }
@@ -52,8 +68,8 @@ public class OverloadedVendingMachineTesting {
     public void shouldBeAbleToBuySaltySnacksTwice(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(3, 5, 8);
         SaltySnacks saltySnacks = new SaltySnacks();
-        machine.buy(saltySnacks);
-        machine.buy(saltySnacks);
+        machine.buy(saltySnacks, 1);
+        machine.buy(saltySnacks, 1);
         assertEquals(machine.getStock(saltySnacks),3);
 
     }
@@ -62,10 +78,9 @@ public class OverloadedVendingMachineTesting {
     public void shouldBeAbleToBuySaltySnacksThreeTimes(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(4, 5, 8);
         SaltySnacks saltySnacks = new SaltySnacks();
-        machine.buy(saltySnacks);
-        machine.buy(saltySnacks);
-        machine.buy(saltySnacks);
-
+        machine.buy(saltySnacks, 1);
+        machine.buy(saltySnacks, 1);
+        machine.buy(saltySnacks, 1);
         assertEquals(machine.getStock(saltySnacks),2);
 
     }
@@ -73,17 +88,17 @@ public class OverloadedVendingMachineTesting {
     @Test
     public void shouldBeAbleToBuyChocolate(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(3, 5, 8);
-        Chocolate chocolate = new Chocolate();
-        machine.buy(chocolate);
-        assertEquals(machine.getStock(chocolate), 7);
+        Chocolates chocolates = new Chocolates();
+        machine.buy(chocolates, 1);
+        assertEquals(machine.getStock(chocolates), 7);
 
     }
     @Test
     public void shouldBeAbleToBuyChocolateTwice(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(3, 5, 8);
-        Chocolate chocolate = new Chocolate();
-        machine.buy(chocolate);
-        machine.buy(chocolate);
+        Chocolates chocolate = new Chocolates();
+        machine.buy(chocolate, 1);
+        machine.buy(chocolate, 1);
         assertEquals(machine.getStock(chocolate),6);
 
     }
@@ -91,11 +106,8 @@ public class OverloadedVendingMachineTesting {
     @Test
     public void shouldBeAbleToBuyChocolateThreeTimes(){
         OverloadedVendingMachine machine = new OverloadedVendingMachine(4, 5, 8);
-        Chocolate chocolate = new Chocolate();
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-
+        Chocolates chocolate = new Chocolates();
+        machine.buy(chocolate, 3);
         assertEquals(machine.getStock(chocolate),5);
 
     }
@@ -104,27 +116,17 @@ public class OverloadedVendingMachineTesting {
     @Test
     public void shouldBeAbleToTestAllThreeProducts(){
     OverloadedVendingMachine machine = new OverloadedVendingMachine(4, 5, 8);
-        Product product = new Product();
-    SoftDrink softDrink = new SoftDrink();
+            Product product = new Product();
+        SoftDrinks softDrinks = new SoftDrinks();
         SaltySnacks saltySnacks = new SaltySnacks();
-        Chocolate chocolate = new Chocolate();
-        machine.addStock(product);
-        machine.buy(softDrink);
-        machine.buy(softDrink);
-        machine.buy(saltySnacks);
-        machine.buy(saltySnacks);
-        machine.buy(saltySnacks);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
-        machine.buy(chocolate);
+        Chocolates chocolates = new Chocolates();
+        machine.buy(softDrinks, 2);
+        machine.buy(saltySnacks, 3);
+        machine.buy(chocolates, 7);
 
-        assertEquals(machine.getStock(softDrink),2);
+        assertEquals(machine.getStock(softDrinks),2);
         assertEquals(machine.getStock(saltySnacks),2);
-        assertEquals(machine.getStock(chocolate),1);
+        assertEquals(machine.getStock(chocolates),1);
 
     }
 }

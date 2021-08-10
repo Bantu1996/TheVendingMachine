@@ -1,51 +1,60 @@
 package vending;
-import vending.product.*;
+
+import vending.OverloadedProduct.*;
 
 public class OverloadedVendingMachine {
-int softDrinkQty, saltySnacksQty, chocolatesQty;
+    int softDrinksQty, saltySnacksQty, chocolatesQty;
 
 //My Overloaded constructor...
-public OverloadedVendingMachine(int softDrinkQty, int saltySnacksQty, int chocolatesQty){
-        this.softDrinkQty = softDrinkQty;
+public OverloadedVendingMachine(int softDrinksQty, int saltySnacksQty, int chocolatesQty){
+        this.softDrinksQty = softDrinksQty;
         this.saltySnacksQty = saltySnacksQty;
         this.chocolatesQty = chocolatesQty;
     };
 
 
     //Buying my products from the vending machine now... :)
-    public void buy(SoftDrink softDrink){
-        softDrinkQty = softDrinkQty - 1;
-    };
-    public void buy(SaltySnacks saltySnacks){
-        saltySnacksQty = saltySnacksQty - 1;
-    };
-    public void buy(Chocolate chocolate){
-        chocolatesQty = chocolatesQty - 1;
-    };
-    public void buy(Product product){
-    };
+    public void buy(Product product, int qty){
+        if(product instanceof SoftDrinks){
+            softDrinksQty -= qty ;
+        }
+        if(product instanceof SaltySnacks){
+            saltySnacksQty -= qty ;
+        }
+        if(product instanceof Chocolates) {
+            chocolatesQty -= qty;
+        }
+        };
 
     //Adding the stock to the vending machine... :)
-    public void addStock(SoftDrink softdrink){
-        softDrinkQty = softDrinkQty + 1;
-    };
-    public void addStock(SaltySnacks saltySnacks){
-        saltySnacksQty = saltySnacksQty + 1;
-    };
-    public void addStock(Chocolate chocolate){
-        chocolatesQty = chocolatesQty + 1;
-    };
-    public void addStock(Product product){
-    };
 
-    //Getting the bought item from the vending machine... :)
-    public int getStock(SoftDrink softdrink){
-       return softDrinkQty;
-    };
-    public int getStock(SaltySnacks saltySnacks) {
-       return saltySnacksQty;
+    public void addStock(Product product, int qty) {
+        if (product instanceof SoftDrinks) {
+            softDrinksQty += qty;
+        }
+        if (product instanceof SaltySnacks) {
+            saltySnacksQty += qty;
+        }
+        if (product instanceof Chocolates) {
+            chocolatesQty += qty;
+        }
     }
-    public int getStock(Chocolate chocolate){
-        return chocolatesQty;
+    //Getting the bought item from the vending machine... :)
+    public int getStock(Product product){
+        int qty = 0;
+        if(product instanceof SoftDrinks){
+            qty = this.softDrinksQty;
+        }
+        if(product instanceof SaltySnacks){
+            qty = this.saltySnacksQty;
+        }
+        if(product instanceof Chocolates){
+            qty = this.chocolatesQty;
+        }
+        return qty;
+    };
+    public int getStock(){
+        int qty = softDrinksQty + saltySnacksQty + chocolatesQty ;
+        return qty;
     }
 }

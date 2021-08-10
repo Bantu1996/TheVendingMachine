@@ -1,6 +1,6 @@
-package vending.product;
+package vending.OverloadedProduct;
 
-public class Chocolate extends Product{
+public class Chocolates extends Product{
     @Override
     public String description() {
         return "This is a Chocolate";
